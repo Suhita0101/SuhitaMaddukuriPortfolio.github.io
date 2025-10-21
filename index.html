@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suhita Maddukuri - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7851a9 0%, #5a3d8a 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #7851a9;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ccccff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        #home {
+            text-align: center;
+            color: white;
+        }
+
+        .home-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .home-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .home-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            animation: fadeInUp 1s ease 0.3s backwards;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.35s backwards;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: #ccccff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: #ccccff;
+            color: #5a3d8a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            margin-right: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: #b3b3ff;
+        }
+
+        .profile-pic {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7851a9 0%, #5a3d8a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto;
+            overflow: hidden;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-pic-placeholder {
+            font-size: 1.2rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        #about, #experience, #projects, #contact {
+            background: white;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #7851a9;
+            text-align: center;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .skills {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: #7851a9;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .summary-points {
+            margin: 1.5rem 0;
+        }
+
+        .summary-points li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .experience-timeline {
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ccccff;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(120, 81, 169, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            color: #7851a9;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-org {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .experience-description ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(120, 81, 169, 0.2);
+        }
+
+        .project-card h3 {
+            color: #7851a9;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-date {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .project-tag {
+            background: #e6e6fa;
+            color: #7851a9;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, #7851a9 0%, #5a3d8a 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(204, 204, 255, 0.3);
+        }
+
+        .cert-card::after {
+            content: "Click to view certificate";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-card:hover::after {
+            opacity: 1;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #7851a9;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #7851a9;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #7851a9 0%, #5a3d8a 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(120, 81, 169, 0.4);
+            background: linear-gradient(135deg, #5a3d8a 0%, #7851a9 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .education-info {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .home-content, .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="container">
+            <div class="home-content">
+                <div class="home-text">
+                    <h1>Hi, I'm Suhita Maddukuri</h1>
+                    <p class="subtitle">Senior Computer Science Student</p>
+                    <p class="education-info">University of South Florida | CGPA: 3.72 | Anticipated Graduation May 2026</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/suhita-maddukuri/" target="_blank" class="social-link" title="LinkedIn">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/Suhita0101" target="_blank" class="social-link" title="GitHub">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <a href="#projects" class="cta-button">View My Work</a>
+                    <a href="#contact" class="cta-button">Get In Touch</a>
+                </div>
+                <div class="home-image">
+                    <div class="profile-pic">
+                      <img src="SM_Portfolio.png" alt="Suhita Maddukuri">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p style="line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        I'm a dedicated computer science student at the University of South Florida with a passion for data science and machine learning. 
+                        My work spans from analyzing medical imaging datasets to developing accessible web applications. I thrive on solving complex 
+                        problems and creating solutions that make a real-world impact.
+                    </p>
+                    
+                    <ul class="summary-points">
+                        <li>Proficient in core computer science principles, enabling efficient problem-solving and solution design</li>
+                        <li>Skilled in statistical modeling and dataset analysis to drive data-informed decisions</li>
+                        <li>Adept in collaborating across teams to develop and refine innovative technical solutions</li>
+                    </ul>
+                    
+                    <div class="skills">
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">Algorithms</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Software Engineering</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+
+                    <h3 style="color: #7851a9; margin-top: 2rem; margin-bottom: 1rem;">Professional Development</h3>
+                    <p style="margin-bottom: 1rem; color: #666; font-style: italic;">Click on any certification to view the certificate</p>
+                    <div class="certifications">
+                        <a href="https://www.linkedin.com/in/suhita-maddukuri/details/certifications/1755585283809/single-media-viewer/?profileId=ACoAAD14ShsBMiFcngsGFtqU_LrdHKfDDIfl_YQ" target="_blank" class="cert-card">
+                            <strong>AWS Cloud Practitioner</strong>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Amazon Web Services</div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/suhita-maddukuri/details/certifications/1746726763600/single-media-viewer/?profileId=ACoAAD14ShsBMiFcngsGFtqU_LrdHKfDDIfl_YQ" target="_blank" class="cert-card">
+                            <strong>Intermediate Technical Interview Prep</strong>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">CodePath</div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/suhita-maddukuri/details/certifications/1746725925734/single-media-viewer/?profileId=ACoAAD14ShsBMiFcngsGFtqU_LrdHKfDDIfl_YQ" target="_blank" class="cert-card">
+                            <strong>Intermediate Web Development</strong>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">CodePath</div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/suhita-maddukuri/details/certifications/1734233230974/single-media-viewer/?profileId=ACoAAD14ShsBMiFcngsGFtqU_LrdHKfDDIfl_YQ" target="_blank" class="cert-card">
+                            <strong>Intro to Web Development</strong>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">CodePath</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Experience & Leadership</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Research Assistant</div>
+                            <div class="experience-org">University of South Florida | Supervisor: Prof. Lawrence Hall</div>
+                        </div>
+                        <div class="experience-date">July 2024 - Present</div>
+                    </div>
+                    <div class="experience-description">
+                        <strong>Detection of Confounders and Potential Confounders in Computed Tomography Lung Datasets</strong>
+                        <ul>
+                            <li>Under the guidance of Dr. Lawrence Hall in the Department of Computer Science and Engineering at the University of South Florida, I analyzed multi-institutional CT datasets to identify confounding factors affecting radiomics-based AI models</li>
+                            <li>Initially used Generalized Additive Models (GAMs) to explore non-linear relationships, but transitioned to clustering-based methods for more accurate detection of potential confounders</li>
+                            <li>Uncovered complex patterns between metadata attributes and radiomic features, enhancing the development of more robust and clinically generalizable AI models</li>
+                            <li>Skills & Tools: Python, Clustering Techniques, Statistical Analysis, Data Visualization, Radiomics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Sports Chair</div>
+                            <div class="experience-org">SASE - Society of Asian Scientists and Engineers</div>
+                        </div>
+                        <div class="experience-date">June 2024 - Present</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Develop and oversee sports events and tournaments for SASE members</li>
+                            <li>Engage with members through informal sports practices and team-building activities</li>
+                            <li>Maintain connections with campus sports organizations and other SASE chapters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Logistics Chair</div>
+                            <div class="experience-org">SERC - SASE's Southeast Regional Conference</div>
+                        </div>
+                        <div class="experience-date">Sept 2024 - March 2025</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Led a team of four to coordinate all logistics for the SASE Southeast Regional Conference</li>
+                            <li>Managed venue bookings, catering arrangements, parking, registration, and technology availability</li>
+                            <li>Collaborated with programming team to address scheduling and resource needs</li>
+                            <li>Recruited and trained day-of volunteers, oversaw inventory and ensured smooth on-site operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Vice President of Finance</div>
+                            <div class="experience-org">Data Science at USF</div>
+                        </div>
+                        <div class="experience-date">April 2024 - Dec 2024</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Oversaw budget management, fund allocation, and financial strategy for the Data Science Club</li>
+                            <li>Provided leadership and support to finance team officers within the executive team</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Financial Officer</div>
+                            <div class="experience-org">Data Science at USF</div>
+                        </div>
+                        <div class="experience-date">Oct 2023 - March 2024</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Managed funds received from Student Government</li>
+                            <li>Handled orders for promotional items and event catering</li>
+                            <li>Contributed to teamwork and functioning of the executive board</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🥈 Walmart Freshness Scanner</h3>
+                    <p class="project-date">Second Place - CodePath X AmazonNext Design Challenge | Jan 2025</p>
+                    <p>Secured second place with NEW JENSS team for the Freshness Scanner - an ML-based feature for the Walmart app designed to help colorblind users assess produce quality. Includes scan functionality for condition, color, name, shelf life, and text-to-voice features for vision impairments.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">UI/UX</span>
+                        <span class="project-tag">ML Design</span>
+                        <span class="project-tag">Accessibility</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Twitch Multi-Stream</h3>
+                    <p class="project-date">Team: Peyton Huffman, Suhita Maddukuri, Tiago Silvestre, Sevara Badriddinova | April 2025</p>
+                    <p>Developed a web application that allows users to view multiple Twitch streams simultaneously in a single browser tab, catering to Esports fans and stream enthusiasts who want multiple points-of-view without juggling tabs.</p>
+                    <p><strong>Key Features:</strong></p>
+                    <ul>
+                        <li>View up to 4 streams with customizable layouts</li>
+                        <li>Live chat integration with toggle visibility</li>
+                        <li>Dynamic stream management without page reload</li>
+                    </ul>
+                    <p><strong>My Role:</strong> Testing lead & documentation, collaborated on UI/UX and stream integration</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Ruby on Rails</span>
+                        <span class="project-tag">Twitch API</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Bootstrap</span>
+                        <span class="project-tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>HobbyHub</h3>
+                    <p class="project-date">CodePath Web Development Project</p>
+                    <p>Created a responsive web app featuring posts about people sharing their hobbies. Implemented 10+ unique event cards in an organized grid format with cohesive theming and mobile responsiveness.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>The app has a cohesive, unique theme for events or resources relevant to a specific community</li>
+                        <li>At least 10 unique events or resources are displayed in a responsive card format</li>
+                        <li>Cards are displayed in an organized grid format</li>
+                        <li>Each card includes information about the event or resource</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML/CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Virtual Escape Room Website</h3>
+                    <p class="project-date">CodePath Web Development Project | Sep 2024 - Nov 2024</p>
+                    <p>As part of the CodePath Intro to Web Development course, I developed an interactive Virtual Escape Room website focused on front-end development using HTML, CSS, and JavaScript.</p>
+                    <p>The project features user-friendly interfaces and real-time puzzle-solving capabilities designed to enhance engagement. By emphasizing teamwork and competitive gameplay, I created an immersive and interactive experience for users.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Travel Assistance ChatBot</h3>
+                    <p class="project-date">Personal Project</p>
+                    <p>Created a Python-based travel assistance chatbot using OpenAI GPT-3.5-turbo with coherent dialogue processing and natural conversation framework.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">OpenAI API</span>
+                        <span class="project-tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+                I'm always interested in new opportunities, collaborations, and interesting conversations. Feel free to reach out!
+            </p>
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgvnbkgd" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem; color: #888; font-size: 0.9rem;">
+                Messages will be sent directly to my email inbox.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Send form data using Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                    this.reset();
+                } else {
+                    alert('There was a problem sending your message. Please try again or contact me directly at nousemail2005@gmail.com');
+                }
+            })
+            .catch(error => {
+                alert('There was a problem sending your message. Please try again or contact me directly at nousemail2005@gmail.com');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.padding = '0.5rem 2rem';
+            } else {
+                nav.style.padding = '1rem 2rem';
+            }
+        });
+    </script>
+</body>
+</html>
