@@ -981,9 +981,15 @@
                 font-size: 1.05rem;
             }
 
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
             nav ul {
-                gap: 1.5rem;
-                font-size: 0.9rem;
+                gap: 1rem;
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             section {
@@ -1000,14 +1006,22 @@
             }
 
             .theme-toggle, .color-toggle {
-                top: 1rem;
+                top: 4.5rem;
+                width: 44px;
+                height: 44px;
+            }
+
+            .theme-toggle {
                 right: 1rem;
-                width: 48px;
-                height: 48px;
             }
 
             .color-toggle {
-                right: 5rem;
+                right: auto;
+                left: 1rem;
+            }
+
+            .theme-toggle i, .color-toggle i {
+                font-size: 1.25rem;
             }
 
             .cursor-follower {
@@ -1153,8 +1167,8 @@
                         <strong>Detection of Confounders and Potential Confounders in Computed Tomography Lung Datasets</strong>
                         <ul>
                             <li>Under the guidance of Dr. Lawrence Hall in the Department of Computer Science and Engineering at the University of South Florida, I analyzed multi-institutional CT datasets to identify confounding factors affecting radiomics-based AI models</li>
-                            <li>Initially used Generalized Additive Models (GAMs) to explore non-linear relationships, but transitioned to clustering-based methods after GAMs proved unsuitable for categorical attributes</li>
-                            <li>Focused on revealing complex, non-linear associations between metadata attributes and radiomic features to improve confounder detection and enhance the generalizability of AI models in medical imaging</li>
+                            <li>Initially used Generalized Additive Models (GAMs) to explore non-linear relationships, but transitioned to clustering-based methods for more accurate detection of potential confounders</li>
+                            <li>Uncovered complex patterns between metadata attributes and radiomic features, enhancing the development of more robust and clinically generalizable AI models</li>
                             <li>Skills & Tools: Python, Clustering Techniques, Statistical Analysis, Data Visualization, Radiomics</li>
                         </ul>
                     </div>
